@@ -1,4 +1,4 @@
-@extends('layouts.app.php', ['pageTitle' => 'Starter Page'])
+@extends('layouts.app', ['pageTitle' => 'Starter Page'])
 @section('breadcrumb')
     @parent
     <li class="breadcrumb-item active">Starter Page</li>
@@ -67,10 +67,6 @@
         <!-- /.col-md-6 -->
     </div>
     <!-- /.row -->
-    </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
 
-    </div>
     <!-- /.content-wrapper -->
 @endsection
