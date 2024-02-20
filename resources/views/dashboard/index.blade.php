@@ -64,9 +64,6 @@
                 </div>
             </div>
         </div>
-        <!-- /.col-md-6 -->
     </div>
-    <!-- /.row -->
 
-    <!-- /.content-wrapper -->
 @endsection
