@@ -16,9 +16,18 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        $request = request();
+        $query = Category::query();
+        if ($name = $request->query('name')) {
+            $query->where('name', 'LIKE', "%{$name}%");
+        }
+        if ($status = $request->query('status')) {
+            $query->whereStatus($status);
+        }
         return view('dashboard.categories.index',
             [
-                'categories' => Category::all()
+                'categories' => $query->paginate(2),
+
             ]);
     }
 

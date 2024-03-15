@@ -69,7 +69,7 @@
                 <label>Status</label>
                 <div class="form-check">
                     <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" value="active"
-                           id="statusActive" @checked(old('status') == 'active') >
+                           id="statusActive" @checked(old('status') == 'active') required>
                     <label class="form-check-label" for="statusActive">Active</label>
                 </div>
                 <div class="form-check">
