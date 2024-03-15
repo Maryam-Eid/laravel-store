@@ -25,6 +25,7 @@ class CategoriesController extends Controller
                     ->when(request()->filled('status'), function ($query) {
                         $query->whereStatus(request('status'));
                     })
+                    ->orderBy('name')
                     ->paginate(10)
             ]);
     }

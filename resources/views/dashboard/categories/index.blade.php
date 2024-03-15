@@ -40,7 +40,7 @@
                 <td><img src="{{ asset('storage/' . $category->image) }}" alt="" height="50"></td>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->parent_id }}</td>
+                <td>{{ $category->parentCategory->name ?? '' }}</td>
                 <td>
                     @if($category->status == 'active')
                         <span class="badge badge-success">{{ $category->status }}</span>
