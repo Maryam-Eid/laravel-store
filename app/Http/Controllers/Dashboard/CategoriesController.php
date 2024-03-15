@@ -120,10 +120,6 @@ class CategoriesController extends Controller
     {
         $category->delete();
 
-        if ($category->image) {
-            Storage::disk('public')->delete($category->image);
-        }
-
         return redirect()->route('dashboard.categories.index')
             ->with('success', 'Category deleted successfully!');
     }
@@ -134,5 +130,35 @@ class CategoriesController extends Controller
 
         return $request->file('image')->store('uploads', 'public');
 
+    }
+
+    public function trash()
+    {
+        return view('dashboard.categories.trash',
+            [
+                'categories' => Category::onlyTrashed()->paginate(10)
+            ]);
+    }
+
+    public function restore($id)
+    {
+        Category::onlyTrashed()->findOrFail($id)->restore();
+
+        return redirect()->route('dashboard.categories.trash')
+            ->with('success', 'Category restored successfully!');
+    }
+
+    public function forceDelete($id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
+        }
+
+        $category->forceDelete();
+
+        return redirect()->route('dashboard.categories.trash')
+            ->with('success', 'Category deleted forever!');
     }
 }

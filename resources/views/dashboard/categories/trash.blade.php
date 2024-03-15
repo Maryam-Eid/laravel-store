@@ -1,20 +1,16 @@
-@extends('layouts.app', ['pageTitle' => 'Categories'])
+@extends('layouts.app', ['pageTitle' => 'Trashed Categories'])
 
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active">Categories</li>
+    <li class="breadcrumb-item">Categories</li>
+    <li class="breadcrumb-item active">Trash</li>
 @endsection
 
 @section('content')
     <div class="mb-5">
-        <a href="{{ route('dashboard.categories.create') }}" class="btn btn-sm btn-primary mr-2">
-            <i class="fas fa-plus-circle mr-1"></i> Create
+        <a href="{{ route('dashboard.categories.index') }}" class="btn btn-sm btn-primary">
+            <i class="fas fa-arrow-left mr-1"></i> Back
         </a>
-
-        <a href="{{ route('dashboard.categories.trash') }}" class="btn btn-sm btn-dark">
-            <i class="fas fa-trash mr-1"></i> Trash
-        </a>
-
     </div>
 
     <x-alert/>
@@ -36,9 +32,8 @@
             <th></th>
             <th>ID</th>
             <th>Name</th>
-            <th>Parent</th>
             <th>Status</th>
-            <th colspan="3">Created At</th>
+            <th colspan="3">Deleted At</th>
         </tr>
         </thead>
         <tbody>
@@ -47,7 +42,6 @@
                 <td><img src="{{ asset('storage/' . $category->image) }}" alt="" height="50"></td>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->parentCategory->name ?? '' }}</td>
                 <td>
                     @if($category->status == 'active')
                         <span class="badge badge-success">{{ $category->status }}</span>
@@ -55,12 +49,16 @@
                         <span class="badge badge-info">{{ $category->status }}</span>
                     @endif
                 </td>
-                <td>{{ $category->created_at->format('Y-m-d | h:i a') }}</td>
+                <td>{{ $category->deleted_at->format('Y-m-d | h:i a') }}</td>
                 <td class="d-flex">
-                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn text-secondary">
-                        <i class="fas fa-edit" title="Edit"></i>
-                    </a>
-                    <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
+                    <form action="{{ route('dashboard.categories.restore', $category->id) }}" method="post">
+                        @csrf
+                        @method('put')
+                        <button type="submit" class="btn text-info">
+                            <i class="fas fa-undo-alt" title="Restore"></i>
+                        </button>
+                    </form>
+                    <form action="{{ route('dashboard.categories.force-delete', $category->id) }}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn text-danger">
