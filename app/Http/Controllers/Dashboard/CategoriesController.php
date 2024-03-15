@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -36,7 +37,7 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $request->merge([
             'slug' => str::slug($request['name'])
@@ -80,7 +81,7 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $old_image = $category->image;
 
@@ -90,7 +91,9 @@ class CategoriesController extends Controller
 
         $data = $request->except('image');
 
-        $data['image'] = $this->uploadImage($request);
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadImage($request);
+        }
 
         $category->update($data);
 

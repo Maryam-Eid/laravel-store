@@ -6,14 +6,10 @@
 @endsection
 
 @section('content')
-    @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
     <div class="mb-5">
         <a href="{{ route('dashboard.categories.create') }}" class="btn btn-sm btn-outline-primary">Create</a>
     </div>
+    <x-alert/>
     <table class="table">
         <thead>
         <tr>
@@ -21,7 +17,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Parent</th>
-            <th>Created At</th>
+            <th colspan="3">Created At</th>
         </tr>
         </thead>
         <tbody>
