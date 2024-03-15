@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('parent_id')
                 ->nullable()
-                ->constrained('categories', 'id')
+                ->constrained('categories')
                 ->nullOnDelete();
             $table->string('name');
             $table->string('slug')

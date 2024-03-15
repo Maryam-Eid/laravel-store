@@ -16,7 +16,7 @@ return[
     ],
     [
         'icon' => 'nav-icon fa-solid fa-box-open',
-        'route' => 'dashboard.categories.index',
+        'route' => 'dashboard.products.index',
         'title' => 'Products',
         'active' => 'dashboard.products.*'
     ],
