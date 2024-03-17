@@ -34,9 +34,10 @@
         <thead>
         <tr>
             <th></th>
-            <th>ID</th>
+            <th>#</th>
             <th>Name</th>
             <th>Parent</th>
+            <th>Products #</th>
             <th>Status</th>
             <th colspan="3">Created At</th>
         </tr>
@@ -47,7 +48,8 @@
                 <td><img src="{{ asset('storage/' . $category->image) }}" alt="" height="50"></td>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->parentCategory->name ?? '' }}</td>
+                <td>{{ $category->parent->name ?? '' }}</td>
+                <td>{{ $category->products_count}}</td>
                 <td>
                     @if($category->status == 'active')
                         <span class="badge badge-success">{{ $category->status }}</span>
@@ -57,7 +59,10 @@
                 </td>
                 <td>{{ $category->created_at->format('Y-m-d | h:i a') }}</td>
                 <td class="d-flex">
-                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn text-secondary">
+                    <a href="{{ route('dashboard.categories.show', $category->id) }}" class="btn text-secondary">
+                        <i class="fas fa-eye" title="Show"></i>
+                    </a>
+                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn text-gray-dark">
                         <i class="fas fa-edit" title="Edit"></i>
                     </a>
                     <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
@@ -71,7 +76,7 @@
             </tr>
         @empty
             <tr class="text-center bg-cyan">
-                <td colspan="7" class="py-4">No categories defined.</td>
+                <td colspan="9" class="py-4">No categories defined.</td>
             </tr>
         @endforelse
         </tbody>

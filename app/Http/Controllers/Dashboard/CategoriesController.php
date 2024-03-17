@@ -16,18 +16,19 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('dashboard.categories.index',
-            [
-                'categories' => Category::query()
-                    ->when(request()->filled('name'), function ($query) {
-                        $query->where('name', 'LIKE', '%' . request('name') . '%');
-                    })
-                    ->when(request()->filled('status'), function ($query) {
-                        $query->whereStatus(request('status'));
-                    })
-                    ->orderBy('name')
-                    ->paginate(10)
-            ]);
+        return view('dashboard.categories.index', [
+            'categories' => Category::query()
+                ->with('parent')
+                ->when(request()->filled('name'), function ($query) {
+                    $query->where('name', 'LIKE', '%' . request('name') . '%');
+                })
+                ->when(request()->filled('status'), function ($query) {
+                    $query->whereStatus(request('status'));
+                })
+                ->withCount('products')
+                ->orderBy('name')
+                ->paginate(10)
+        ]);
     }
 
     /**
@@ -64,9 +65,12 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        return view('dashboard.categories.show', [
+            'category' => $category,
+            'products' => $category->products()->with('store')->latest()->paginate(5)
+        ]);
     }
 
     /**
