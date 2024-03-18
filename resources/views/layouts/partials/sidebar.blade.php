@@ -18,7 +18,7 @@
                     class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="{{ route('dashboard.profile.edit') }}">{{ $user->profile->first_name . ' ' . $user->profile->last_name }}</a>
+                <a href="{{ route('dashboard.profile.edit') }}">{{ $user->profile->full_name }}</a>
             </div>
             <div class="info ml-auto">
                 <form action="{{ route('logout') }}" method="post">
