@@ -18,9 +18,11 @@ class CheckUserRole
         if (!$request->user()) {
             return redirect()->route('login');
         }
+
         if (!in_array($request->user()->role, $roles)) {
             abort(403);
         }
+
         return $next($request);
     }
 }
