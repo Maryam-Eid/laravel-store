@@ -130,5 +130,5 @@
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     @endpush
-    @vite('js/cart.js')
+    @vite('resources/js/cart.js')
 </x-front-layout>
