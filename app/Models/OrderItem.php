@@ -10,6 +10,8 @@ class OrderItem extends Pivot
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $guarded = [];
 
     protected $table = 'order_items';

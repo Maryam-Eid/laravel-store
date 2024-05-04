@@ -130,7 +130,7 @@
                     <label for="country">Country</label>
                     <select name="country" class="form-control @error('country') is-invalid @enderror" id="country"
                             required>
-                        <option value="">Select Country</option>
+                        <option value="" disabled>Select Country</option>
                         @foreach($countries as $code => $name)
                             <option
                                 value="{{ $code }}" {{ old('country', $user->profile->country) == $code ? 'selected' : '' }}>{{ $name }}</option>

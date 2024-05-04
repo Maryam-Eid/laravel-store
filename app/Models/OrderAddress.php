@@ -11,4 +11,6 @@ class OrderAddress extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
 }

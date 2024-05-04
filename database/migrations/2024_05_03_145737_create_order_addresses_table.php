@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignIdFor(\App\Models\Order::class)
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->enum('type', ['nilling', 'shipping']);
+            $table->enum('type', ['billing', 'shipping']);
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')
