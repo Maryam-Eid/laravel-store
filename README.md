@@ -41,18 +41,3 @@ To get started with this project, follow these steps:
     php artisan serve
 
 Visit [http://localhost:8000](http://localhost:8000) in your browser to access the application.
-
-
-## Contributing
-
-If you'd like to contribute to the project, please follow the standard Git workflow:
-1. Fork the repository.
-2. Create a new branch: 'git checkout -b feature/new-feature'.
-3. Make your changes and commit them: 'git commit -m 'Add new feature'.
-4. Push to the branch: 'git push origin feature/new-feature'.
-5. Create a pull request.
-
-
-## Issues
-
-If you encounter any issues or have suggestions, please open an issue on the [Issues](https://github.com/maryam-eid/laravel-store/issues) tab.
