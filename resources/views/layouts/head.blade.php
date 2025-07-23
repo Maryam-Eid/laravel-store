@@ -10,6 +10,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/FastBagFavIcon.png') }}"/>
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
     @stack('css')
 </head>
 <body class="hold-transition sidebar-mini">

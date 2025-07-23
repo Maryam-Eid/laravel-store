@@ -401,4 +401,5 @@
         </div>
     </section>
     <!--====== Checkout Form Steps Part Ends ======-->
+    @vite(['resources/scss/main.scss'])
 </x-front-layout>
