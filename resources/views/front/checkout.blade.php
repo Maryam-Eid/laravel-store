@@ -144,7 +144,6 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="single-form form-default">
-                                                    <label>User Name</label>
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="single-form form-default">

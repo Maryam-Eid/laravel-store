@@ -23,7 +23,8 @@
             <div class="info ml-auto">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button type="submit" class="btn"><i class="fa-solid fa-power-off text-danger" title="Logout"></i>
+                    <button type="submit" class="btn">
+                        <i class="fas fa-power-off text-danger" title="Logout"></i>
                     </button>
                 </form>
             </div>
