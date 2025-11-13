@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -28,7 +29,7 @@ class OrderCreatedNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
@@ -54,6 +55,17 @@ class OrderCreatedNotification extends Notification
             'url' => url('/dashboard'),
             'order_id' => $this->order->id,
         ];
+    }
+
+    public function toBroadcast(object $notifiable)
+    {
+        $address = $this->order->billingAddress;
+        return new BroadcastMessage([
+            'body' => "A new order (#{$this->order->number}) created by {$address->name} from {$address->country_name}.",
+            'icon' => 'fa fa-shopping-cart',
+            'url' => url('/dashboard'),
+            'order_id' => $this->order->id,
+        ]);
     }
 
     /**
