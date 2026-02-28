@@ -2,13 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
-use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UpdateUserLastActiveAt
+class CheckApiKey
 {
     /**
      * Handle an incoming request.
@@ -17,14 +15,11 @@ class UpdateUserLastActiveAt
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = $request->user();
-        if ($user instanceof User)
-        {
-            $request->user()->forceFill([
-                'last_active_at' => Carbon::now(),
-            ])
-            ->save();
+        $token = $request->header('X-API-KEY');
+        if (!$token || $token !== config('app.api_key')) {
+            return response()->json(['message' => 'Unauthorized'], 400);
         }
+
         return $next($request);
     }
 }

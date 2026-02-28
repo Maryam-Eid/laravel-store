@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"/>
+    @vite(['resources/css/app.css'])
     @stack('css')
 </head>
 
@@ -86,18 +87,33 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-end">
-                        <div class="user">
-                            <i class="lni lni-user"></i>
-                            Hello
-                        </div>
-                        <ul class="user-login">
-                            <li>
-                                <a href="login.html">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="register.html">Register</a>
-                            </li>
-                        </ul>
+                        @auth
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                {{ Auth::user()->name }}
+                            </div>
+                            <ul class="user-login">
+                                <li>
+                                    <a href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('logout').submit()">Sign Out</a>
+                                </li>
+                                <form action="{{ route('logout') }}" method="post" id="logout" style="display: none">
+                                    @csrf
+                                </form>
+                            </ul>
+                        @else
+                            <div class="user">
+                                <i class="lni lni-user"></i>
+                                Hello
+                            </div>
+                            <ul class="user-login">
+                                <li>
+                                    <a href="{{ route('login') }}">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('register') }}">Register</a>
+                                </li>
+                            </ul>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -158,7 +174,7 @@
                                     <span class="total-items">0</span>
                                 </a>
                             </div>
-                            <x-cart-menu />
+                            <x-cart-menu/>
                         </div>
                     </div>
                 </div>
@@ -454,6 +470,7 @@
 <script src={{ asset('assets/js/tiny-slider.js') }}></script>
 <script src={{ asset('assets/js/glightbox.min.js') }}></script>
 <script src={{ asset('assets/js/main.js') }}></script>
+@vite(['resources/js/app.js'])
 @stack('js')
 </body>
 

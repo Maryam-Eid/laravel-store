@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         App\Providers\CartServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
 
     ])->toArray(),
 
@@ -191,4 +192,6 @@ return [
     ])->toArray(),
 
     'currency' => 'USD',
+
+    'api_key' => env('API_KEY'),
 ];

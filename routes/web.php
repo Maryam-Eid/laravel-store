@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Front\Auth\TwoFactorAuthenticationController;
 use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\HomeController;
@@ -33,11 +34,12 @@ Route::get('checkout', [CheckoutController::class, 'create'])
     ->name('checkout');
 Route::post('checkout', [CheckoutController::class, 'store']);
 
-
+Route::get('auth/user/2fa', [TwoFactorAuthenticationController::class, 'index'])
+    ->name('front.2fa');
 
 Route::middleware('auth')->group(function () {
     Route::resource('/profile', ProfileController::class)->only(['edit', 'update', 'destroy']);
 });
 
-require __DIR__ . '/auth.php';
+//require __DIR__ . '/auth.php';
 require __DIR__ . '/dashboard.php';
