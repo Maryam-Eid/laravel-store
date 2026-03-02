@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,8 +25,21 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
+        $this->reportable(function (QueryException $e) {
             //
+        });
+
+        $this->renderable(function (QueryException $e, Request $request) {
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 400);
+            }
+
+            return redirect()->back()->withInput()->withErrors([
+                'message' => $e->getMessage(),
+            ])->with('info', $e->getMessage());
         });
     }
 }
