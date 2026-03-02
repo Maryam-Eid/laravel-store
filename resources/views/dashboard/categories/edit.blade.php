@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => 'Edit Category'])
+@extends('layouts.dashboard')
+
+@section('title', 'Edit Category')
 
 @section('breadcrumb')
     @parent

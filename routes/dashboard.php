@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\UsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\CheckUserRole;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +31,14 @@ Route::group([
         ->name('categories.restore');
     Route::delete('/categories/{category}/force-delete', [CategoriesController::class, 'forceDelete'])
         ->name('categories.force-delete');
-    Route::resource('/categories', CategoriesController::class);
 
-    Route::resource('/products', ProductsController::class);
+    Route::resources([
+        'categories' => CategoriesController::class,
+        'products' => ProductsController::class,
+        'roles' => RolesController::class,
+        'admins' => AdminsController::class,
+        'users' => UsersController::class,
+    ]);
 
 });
 

@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => 'Starter Page'])
+@extends('layouts.dashboard')
+
+@section('title', 'Starter Page')
 
 @section('breadcrumb')
     @parent

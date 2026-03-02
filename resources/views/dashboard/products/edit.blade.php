@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => 'Edit Product'])
+@extends('layouts.dashboard')
+
+@section('title', 'Edit Product')
 
 @push('css')
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css"/>

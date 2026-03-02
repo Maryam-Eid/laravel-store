@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -16,6 +17,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        Gate::authorize('categories.view');
+
         return view('dashboard.categories.index', [
             'categories' => Category::query()
                 ->with('parent')
@@ -36,6 +39,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
+        Gate::authorize('categories.create');
+
         return view('dashboard.categories.create',
             [
                 'categories' => Category::all(),
@@ -48,6 +53,8 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        Gate::authorize('categories.create');
+
         $request->merge([
             'slug' => str::slug($request['name'])
         ]);
@@ -67,6 +74,8 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
+        Gate::authorize('categories.view');
+
         return view('dashboard.categories.show', [
             'category' => $category,
             'products' => $category->products()->with('store')->latest()->paginate(5)
@@ -78,6 +87,8 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
+        Gate::authorize('categories.update');
+
         return view('dashboard.categories.edit',
             [
                 'category' => $category,
@@ -95,6 +106,8 @@ class CategoriesController extends Controller
      */
     public function update(CategoryRequest $request, Category $category)
     {
+        Gate::authorize('categories.update');
+
         $old_image = $category->image;
 
         $request->merge([
@@ -122,6 +135,8 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        Gate::authorize('categories.delete');
+
         $category->delete();
 
         return redirect()->route('dashboard.categories.index')

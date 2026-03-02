@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => 'Edit Profile'])
+@extends('layouts.dashboard')
+
+@section('title', 'Edit Profile')
 
 @section('breadcrumb')
     @parent

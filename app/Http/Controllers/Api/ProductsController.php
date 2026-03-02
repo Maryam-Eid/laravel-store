@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Product::class, 'product');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -38,7 +44,7 @@ class ProductsController extends Controller
         ]);
 
         $user = $request->user();
-        if (!$user->tokenCan('products.create')){
+        if (!$user->tokenCan('products.create')) {
             abort(403, 'Not allowed');
         }
 
@@ -69,7 +75,7 @@ class ProductsController extends Controller
         ]);
 
         $user = $request->user();
-        if (!$user->tokenCan('products.update')){
+        if (!$user->tokenCan('products.update')) {
             abort(403, 'Not allowed');
         }
 
@@ -81,14 +87,14 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
         $user = Auth::guard('sanctum')->user();
-        if (!$user->tokenCan('products.delete')){
+        if (!$user->tokenCan('products.delete')) {
             abort(403, 'Not allowed');
         }
 
-        Product::destroy($id);
+        Product::destroy($product);
         return response()->noContent();
     }
 }

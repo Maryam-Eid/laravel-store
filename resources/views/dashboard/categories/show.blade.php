@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => $category->name])
+@extends('layouts.dashboard')
+
+@section('title', $category->name)
 
 @section('breadcrumb')
     @parent

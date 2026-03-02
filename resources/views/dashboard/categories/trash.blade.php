@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => 'Trashed Categories'])
+@extends('layouts.dashboard')
+
+@section('title', 'Trashed Categories')
 
 @section('breadcrumb')
     @parent

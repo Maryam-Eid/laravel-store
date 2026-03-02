@@ -1,4 +1,6 @@
-@extends('layouts.app', ['pageTitle' => 'Categories'])
+@extends('layouts.dashboard')
+
+@section('title', 'Categories')
 
 @section('breadcrumb')
     @parent
@@ -7,14 +9,14 @@
 
 @section('content')
     <div class="mb-5">
-        <a href="{{ route('dashboard.categories.create') }}" class="btn btn-sm btn-primary mr-2">
-            <i class="fas fa-plus-circle mr-1"></i> Create
-        </a>
-
+        @can('categories.create')
+            <a href="{{ route('dashboard.categories.create') }}" class="btn btn-sm btn-primary mr-2">
+                <i class="fas fa-plus-circle mr-1"></i> Create
+            </a>
+        @endcan
         <a href="{{ route('dashboard.categories.trash') }}" class="btn btn-sm btn-dark">
             <i class="fas fa-trash mr-1"></i> Trash
         </a>
-
     </div>
 
     <x-alert/>
@@ -59,19 +61,25 @@
                 </td>
                 <td>{{ $category->created_at->format('Y-m-d | h:i a') }}</td>
                 <td class="d-flex">
-                    <a href="{{ route('dashboard.categories.show', $category->id) }}" class="btn text-secondary">
-                        <i class="fas fa-eye" title="Show"></i>
-                    </a>
-                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn text-gray-dark">
-                        <i class="fas fa-edit" title="Edit"></i>
-                    </a>
-                    <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn text-danger">
-                            <i class="fas fa-trash-alt" title="Delete"></i>
-                        </button>
-                    </form>
+                    @can('categories.view')
+                        <a href="{{ route('dashboard.categories.show', $category->id) }}" class="btn text-secondary">
+                            <i class="fas fa-eye" title="Show"></i>
+                        </a>
+                    @endcan
+                    @can('categories.update')
+                        <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn text-gray-dark">
+                            <i class="fas fa-edit" title="Edit"></i>
+                        </a>
+                    @endcan
+                    @can('categories.delete')
+                        <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn text-danger">
+                                <i class="fas fa-trash-alt" title="Delete"></i>
+                            </button>
+                        </form>
+                    @endcan
                 </td>
             </tr>
         @empty

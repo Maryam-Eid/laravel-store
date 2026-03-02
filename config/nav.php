@@ -1,29 +1,53 @@
 <?php
 
-return[
+return [
     [
-        'icon' => 'nav-icon fa-solid fa-house',
+        'icon' => 'nav-icon fas fa-tachometer-alt',
         'route' => 'dashboard.dashboard',
         'title' => 'Dashboard',
-        'active' => 'dashboard.dashboard'
+        'active' => 'dashboard.dashboard',
     ],
     [
-        'icon' => 'nav-icon fa-solid fa-layer-group',
+        'icon' => 'fas fa-tags nav-icon',
         'route' => 'dashboard.categories.index',
         'title' => 'Categories',
         'badge' => 'New',
-        'active' => 'dashboard.categories.*'
+        'active' => 'dashboard.categories.*',
+        'ability' => 'categories.view',
     ],
     [
-        'icon' => 'nav-icon fa-solid fa-box-open',
+        'icon' => 'fas fa-box nav-icon',
         'route' => 'dashboard.products.index',
         'title' => 'Products',
-        'active' => 'dashboard.products.*'
+        'active' => 'dashboard.products.*',
+        'ability' => 'products.view',
     ],
     [
-        'icon' => 'nav-icon fa-sharp fa-solid fa-truck',
+        'icon' => 'fas fa-receipt nav-icon',
         'route' => 'dashboard.categories.index',
         'title' => 'Orders',
-        'active' => 'dashboard.orders.*'
-    ]
+        'active' => 'dashboard.orders.*',
+        'ability' => 'orders.view',
+    ],
+    [
+        'icon' => 'fas fa-user-shield nav-icon',
+        'route' => 'dashboard.roles.index',
+        'title' => 'Roles',
+        'active' => 'dashboard.roles.*',
+       // 'ability' => 'roles.view',
+    ],
+    [
+        'icon' => 'fas fa-users nav-icon',
+        'route' => 'dashboard.users.index',
+        'title' => 'Users',
+        'active' => 'dashboard.users.*',
+        'ability' => 'users.view',
+    ],
+    [
+        'icon' => 'fas fa-users nav-icon',
+        'route' => 'dashboard.admins.index',
+        'title' => 'Admins',
+        'active' => 'dashboard.admins.*',
+        'ability' => 'admins.view',
+    ],
 ];
