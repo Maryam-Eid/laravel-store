@@ -1,22 +1,20 @@
-@php use Illuminate\Support\Facades\URL; @endphp
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>{{ $title }}</title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="icon" type="image/x-icon" href="{{ asset('dist/img/FastBagFavIcon.png') }}"/>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.svg') }}" />
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"/>
-    @vite(['resources/css/app.css'])
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/LineIcons.3.0.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     @stack('css')
 </head>
 
@@ -63,12 +61,10 @@
                             </li>
                             <li>
                                 <div class="select-position">
-                                    <form action="{{ URL::current() }}" method="GET">
+                                    <form action="{{ URL::current() }}" method="get">
                                         <select name="locale" onchange="this.form.submit()">
                                             @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                                                <option
-                                                    value="{{ $localeCode }}" @selected($localeCode == App::currentLocale())>{{ $properties['native'] }}
-                                                </option>
+                                                <option value="{{ $localeCode }}" @selected($localeCode == App::currentLocale())>{{ $properties['native'] }}</option>
                                             @endforeach
                                         </select>
                                     </form>
@@ -80,8 +76,8 @@
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-middle">
                         <ul class="useful-links">
-                            <li><a href="index.html">{{ __('Home') }}</a></li>
-                            <li><a href="about-us.html">{{ __('About Us') }}</a></li>
+                            <li><a href="index.html">{{ trans('Home') }}</a></li>
+                            <li><a href="about-us.html">@lang('About Us')</a></li>
                             <li><a href="contact.html">{{ __('Contact Us') }}</a></li>
                         </ul>
                     </div>
@@ -95,22 +91,20 @@
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="{{ route('login') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout').submit()">Sign
-                                        Out</a>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit()">Sign Out</a>
                                 </li>
-                                <form action="{{ route('logout') }}" method="post" id="logout" style="display: none">
+                                <form action="{{ route('logout') }}" id="logout" method="post" style="display:none">
                                     @csrf
                                 </form>
                             </ul>
                         @else
                             <div class="user">
                                 <i class="lni lni-user"></i>
-                                {{ __('Hello') }}
+                                {{ __('Hello')}}
                             </div>
                             <ul class="user-login">
                                 <li>
-                                    <a href="{{ route('login') }}">{{ __('Sign In') }}</a>
+                                    <a href="{{ route('login') }}">{{ Lang::get('Sign In') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -130,7 +124,7 @@
                 <div class="col-lg-3 col-md-3 col-7">
                     <!-- Start Header Logo -->
                     <a class="navbar-brand" href="index.html">
-                        <img src={{ asset('assets/images/logo/logo.svg') }} alt="Logo">
+                        <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="Logo">
                     </a>
                     <!-- End Header Logo -->
                 </div>
@@ -177,7 +171,7 @@
                                     <span class="total-items">0</span>
                                 </a>
                             </div>
-                            <x-cart-menu/>
+                            <x-cart-menu />
                         </div>
                     </div>
                 </div>
@@ -234,16 +228,17 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
                                 <li class="nav-item">
-                                    <a href="index.html" class="active" aria-label="Toggle navigation">Home</a>
+                                    <a href="index.html" aria-label="Toggle navigation">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="dd-menu collapsed" href="javascript:void(0)" data-bs-toggle="collapse"
-                                       data-bs-target="#submenu-1-2" aria-controls="navbarSupportedContent"
-                                       aria-expanded="false" aria-label="Toggle navigation">Pages</a>
+                                    <a class="dd-menu active collapsed" href="javascript:void(0)"
+                                       data-bs-toggle="collapse" data-bs-target="#submenu-1-2"
+                                       aria-controls="navbarSupportedContent" aria-expanded="false"
+                                       aria-label="Toggle navigation">Pages</a>
                                     <ul class="sub-menu collapse" id="submenu-1-2">
                                         <li class="nav-item"><a href="about-us.html">About Us</a></li>
                                         <li class="nav-item"><a href="faq.html">Faq</a></li>
-                                        <li class="nav-item"><a href="login.html">Login</a></li>
+                                        <li class="nav-item active"><a href="login.html">Login</a></li>
                                         <li class="nav-item"><a href="register.html">Register</a></li>
                                         <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
                                         <li class="nav-item"><a href="404.html">404 Error</a></li>
@@ -309,7 +304,6 @@
 </header>
 <!-- End Header Area -->
 
-
 <!-- Start Breadcrumbs -->
 {{ $breadcrumb ?? '' }}
 <!-- End Breadcrumbs -->
@@ -326,7 +320,7 @@
                     <div class="col-lg-3 col-md-4 col-12">
                         <div class="footer-logo">
                             <a href="index.html">
-                                <img src={{ asset('assets/images/logo/white-logo.svg') }} alt="#">
+                                <img src="{{ asset('assets/images/logo/white-logo.svg') }}" alt="#">
                             </a>
                         </div>
                     </div>
@@ -435,7 +429,7 @@
                     <div class="col-lg-4 col-12">
                         <div class="payment-gateway">
                             <span>We Accept:</span>
-                            <img src={{ asset('assets/images/footer/credit-cards-footer.png') }} alt="#">
+                            <img src="{{ asset('assets/images/footer/credit-cards-footer.png') }}" alt="#">
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">
@@ -469,12 +463,13 @@
 </a>
 
 <!-- ========================= JS here ========================= -->
-<script src={{ asset('assets/js/bootstrap.min.js') }}></script>
-<script src={{ asset('assets/js/tiny-slider.js') }}></script>
-<script src={{ asset('assets/js/glightbox.min.js') }}></script>
-<script src={{ asset('assets/js/main.js') }}></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
+<script src="{{ asset('assets/js/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 @vite(['resources/js/app.js'])
 @stack('js')
+
 </body>
 
 </html>
