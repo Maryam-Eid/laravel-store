@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Stripe\Event;
 use Illuminate\Support\Facades\Log;
+use Stripe\Event;
 
 class StripeWebHooksController extends Controller
 {
@@ -17,7 +17,7 @@ class StripeWebHooksController extends Controller
             $event = Event::constructFrom(
                 json_decode($payload, true)
             );
-        } catch(\UnexpectedValueException $e) {
+        } catch (\UnexpectedValueException $e) {
             http_response_code(400);
             exit();
         }

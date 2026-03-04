@@ -21,7 +21,7 @@ class Cart extends Model
     protected static function booted()
     {
         static::observe(CartObserver::class);
-        static::addGlobalScope('cookie_id', function (Builder $builder){
+        static::addGlobalScope('cookie_id', function (Builder $builder) {
             $builder->where('cookie_id', Cart::getCookieId());
         });
     }
@@ -29,10 +29,11 @@ class Cart extends Model
     public static function getCookieId()
     {
         $cookie_id = Cookie::get('cart_id');
-        if (!$cookie_id) {
+        if (! $cookie_id) {
             $cookie_id = Str::uuid();
             Cookie::queue('cart_id', $cookie_id, 30 * 24 * 60);
         }
+
         return $cookie_id;
     }
 
@@ -40,7 +41,7 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class)
             ->withDefault([
-                'name' => 'Anonymous'
+                'name' => 'Anonymous',
             ]);
     }
 

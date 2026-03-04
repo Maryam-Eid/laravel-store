@@ -4,12 +4,10 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 
 class InvalidOrderException extends Exception
 {
-
     public function render(Request $request)
     {
         return Redirect::route('home')

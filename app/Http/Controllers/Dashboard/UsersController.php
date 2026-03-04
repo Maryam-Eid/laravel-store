@@ -12,31 +12,29 @@ class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      */
     public function index()
     {
         Gate::authorize('users.view');
 
         $users = User::paginate();
+
         return view('dashboard.users.index', compact('users'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
      */
     public function create()
     {
         return view('dashboard.users.create', [
             'roles' => Role::all(),
-            'user' => new User(),
+            'user' => new User,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
      */
     public function store(Request $request)
     {
@@ -55,7 +53,6 @@ class UsersController extends Controller
 
     /**
      * Display the specified resource.
-     *
      */
     public function show($id)
     {
@@ -64,7 +61,6 @@ class UsersController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
      */
     public function edit(User $user)
     {
@@ -76,7 +72,6 @@ class UsersController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
      */
     public function update(Request $request, User $user)
     {
@@ -95,11 +90,11 @@ class UsersController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      */
     public function destroy($id)
     {
         User::destroy($id);
+
         return redirect()
             ->route('dashboard.users.index')
             ->with('success', 'User deleted successfully');

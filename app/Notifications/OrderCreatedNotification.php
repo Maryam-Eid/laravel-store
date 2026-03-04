@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -38,6 +37,7 @@ class OrderCreatedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $address = $this->order->billingAddress;
+
         return (new MailMessage)
             ->subject("New Order #{$this->order->number}")
             ->greeting("Hi {$notifiable->name},")
@@ -49,6 +49,7 @@ class OrderCreatedNotification extends Notification
     public function toDatabase(object $notifiable)
     {
         $address = $this->order->billingAddress;
+
         return [
             'body' => "A new order (#{$this->order->number}) created by {$address->name} from {$address->country_name}.",
             'icon' => 'fa fa-shopping-cart',
@@ -60,6 +61,7 @@ class OrderCreatedNotification extends Notification
     public function toBroadcast(object $notifiable)
     {
         $address = $this->order->billingAddress;
+
         return new BroadcastMessage([
             'body' => "A new order (#{$this->order->number}) created by {$address->name} from {$address->country_name}.",
             'icon' => 'fa fa-shopping-cart',

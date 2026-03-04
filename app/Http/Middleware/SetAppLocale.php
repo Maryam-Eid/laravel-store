@@ -15,12 +15,12 @@ class SetAppLocale
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        //$locale = request('locale', Cookie::get('locale', config('app.locale')));
-        //Cookie::queue('locale', $locale, 60 * 24 * 365);
+        // $locale = request('locale', Cookie::get('locale', config('app.locale')));
+        // Cookie::queue('locale', $locale, 60 * 24 * 365);
 
         $locale = $request->route('locale');
         App::setLocale($locale);

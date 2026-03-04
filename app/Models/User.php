@@ -5,7 +5,6 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Concerns\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, TwofactorAuthenticatable, HasApiTokens, HasRoles;
+    use HasApiTokens, HasApiTokens, HasFactory, HasRoles, Notifiable, TwofactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_recovery_codes',
         'two_factor_secret',
         'two_factor_confirmed_at',
-        'provider_token'
+        'provider_token',
     ];
 
     /**
@@ -71,5 +70,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return Crypt::decryptString($value);
     }
-
 }

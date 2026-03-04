@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
-use App\Models\RoleAbility;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
@@ -20,6 +19,7 @@ class RolesController extends Controller
     public function index()
     {
         $roles = Role::query()->paginate();
+
         return view('dashboard.roles.index', compact('roles'));
     }
 
@@ -29,7 +29,7 @@ class RolesController extends Controller
     public function create()
     {
         return view('dashboard.roles.create', [
-            'role' => new Role(),
+            'role' => new Role,
         ]);
     }
 
@@ -40,7 +40,7 @@ class RolesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'abilities' => 'required|array'
+            'abilities' => 'required|array',
         ]);
 
         $role = Role::createWithAbilities($request);
@@ -74,7 +74,7 @@ class RolesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'abilities' => 'required|array'
+            'abilities' => 'required|array',
         ]);
 
         $role->updateWithAbilities($request);

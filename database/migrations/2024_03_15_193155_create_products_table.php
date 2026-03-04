@@ -6,7 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -38,9 +39,9 @@ return new class extends Migration {
             $table->float('rating')
                 ->default(0);
             $table->boolean('featured')
-            ->default(0);
-            $table->enum('status',['active', 'draft', 'archived'])
-            ->default('active');
+                ->default(0);
+            $table->enum('status', ['active', 'draft', 'archived'])
+                ->default('active');
             $table->softDeletes();
             $table->timestamps();
         });

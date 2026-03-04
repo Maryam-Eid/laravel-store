@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Facades\Cart;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class EmptyCart
 {

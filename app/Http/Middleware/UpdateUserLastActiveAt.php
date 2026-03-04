@@ -18,13 +18,13 @@ class UpdateUserLastActiveAt
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if ($user instanceof User)
-        {
+        if ($user instanceof User) {
             $request->user()->forceFill([
                 'last_active_at' => Carbon::now(),
             ])
-            ->save();
+                ->save();
         }
+
         return $next($request);
     }
 }

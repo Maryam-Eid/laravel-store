@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use Illuminate\Support\Str;
 
 class ModelPolicy
@@ -31,7 +30,7 @@ class ModelPolicy
             $name = 'view';
         }
 
-        $ability = $class_name . '.' . Str::kebab($name);
+        $ability = $class_name.'.'.Str::kebab($name);
         $user = $arguments[0];
 
         if (isset($arguments[1])) {

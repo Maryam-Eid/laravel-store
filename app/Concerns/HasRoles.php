@@ -19,7 +19,9 @@ trait HasRoles
                 ->where('type', 'deny');
         })->exists();
 
-        if ($denied) return false;
+        if ($denied) {
+            return false;
+        }
 
         return $this->roles()->whereHas('abilities', function ($query) use ($ability) {
             $query->where('ability', $ability)

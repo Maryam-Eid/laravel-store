@@ -19,7 +19,7 @@ class AdminFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail(),
-            'username'=> $this->faker->unique()->userName,
+            'username' => $this->faker->unique()->userName,
             'password' => bcrypt('password'),
             'phone_number' => $this->faker->phoneNumber,
             'super_admin' => $this->faker->boolean,

@@ -5,17 +5,17 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Front\CartRequest;
 use App\Models\Product;
-use App\Repositories\Cart\CartModelRepository;
 use App\Repositories\Cart\CartRepository;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     protected $cart;
+
     public function __construct(CartRepository $cart)
     {
         $this->cart = $cart;
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -54,8 +54,9 @@ class CartController extends Controller
     public function destroy(string $id)
     {
         $this->cart->delete($id);
-        return[
-            'message' => 'Item deleted'
+
+        return [
+            'message' => 'Item deleted',
         ];
     }
 }

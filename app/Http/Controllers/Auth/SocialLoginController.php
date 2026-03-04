@@ -26,7 +26,7 @@ class SocialLoginController extends Controller
                 'provider_id' => $providerUser->id,
             ])->first();
 
-            if (!$user) {
+            if (! $user) {
                 $user = User::query()->create([
                     'name' => $providerUser->name,
                     'email' => $providerUser->email,

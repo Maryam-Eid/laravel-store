@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use Illuminate\Support\Facades\App;
 use App\Models\Payment;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Stripe\StripeClient;
 
 class PaymentsController extends Controller
@@ -20,7 +18,7 @@ class PaymentsController extends Controller
 
     public function createStripePaymentIntent(Order $order)
     {
-        $amount = $order->items->sum(function($item) {
+        $amount = $order->items->sum(function ($item) {
             return $item->price * $item->quantity;
         });
 
@@ -35,7 +33,7 @@ class PaymentsController extends Controller
         ]);
 
         try {
-            $payment = new Payment();
+            $payment = new Payment;
             $payment->forceFill([
                 'order_id' => $order->id,
                 'amount' => $paymentIntent->amount,
@@ -47,6 +45,7 @@ class PaymentsController extends Controller
             ])->save();
         } catch (QueryException $e) {
             echo $e->getMessage();
+
             return;
         }
 
@@ -63,7 +62,6 @@ class PaymentsController extends Controller
             []
         );
 
-
         if ($paymentIntent->status == 'succeeded') {
             try {
                 $payment = Payment::where('order_id', $order->id)->first();
@@ -74,13 +72,14 @@ class PaymentsController extends Controller
 
             } catch (QueryException $e) {
                 echo $e->getMessage();
+
                 return;
             }
 
             event('payment.created', $payment->id);
 
             return redirect()->route('home', [
-                'status' => 'payment-succeeded'
+                'status' => 'payment-succeeded',
             ]);
         }
 

@@ -18,12 +18,13 @@ class Role extends Model
     {
         return $this->hasMany(RoleAbility::class);
     }
+
     public static function createWithAbilities(Request $request)
     {
         DB::beginTransaction();
         try {
             $role = Role::query()->create([
-                'name' => $request->post('name')
+                'name' => $request->post('name'),
             ]);
 
             foreach ($request->post('abilities') as $ability => $value) {
@@ -48,7 +49,7 @@ class Role extends Model
         DB::beginTransaction();
         try {
             $this->update([
-                'name' => $request->post('name')
+                'name' => $request->post('name'),
             ]);
 
             foreach ($request->post('abilities') as $ability => $value) {

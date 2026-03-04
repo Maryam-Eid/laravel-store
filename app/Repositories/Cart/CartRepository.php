@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Cart;
 
-use illuminate\Support\Collection;
 use App\Models\Product;
+use illuminate\Support\Collection;
 
 interface CartRepository
 {
@@ -18,6 +18,4 @@ interface CartRepository
     public function empty();
 
     public function total(): float;
-
-
 }

@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class TwoFactorAuthenticationController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user = Auth::user();
+
         return view('front.auth.two-factor-auth', compact('user'));
     }
 }

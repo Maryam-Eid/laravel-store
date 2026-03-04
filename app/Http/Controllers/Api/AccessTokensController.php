@@ -18,7 +18,7 @@ class AccessTokensController extends Controller
             'email' => 'required|email|exists:users,email|max:255',
             'password' => 'required|string|min:6|max:255',
             'device_name' => 'string|max:255',
-            'abilities' => 'nullable|array'
+            'abilities' => 'nullable|array',
         ]);
 
         $user = User::query()->where('email', $request->email)->first();
@@ -34,7 +34,7 @@ class AccessTokensController extends Controller
         }
 
         return Response::json([
-            'message' => 'Invalid credentials'
+            'message' => 'Invalid credentials',
         ], 401);
     }
 

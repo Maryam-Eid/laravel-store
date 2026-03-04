@@ -73,5 +73,5 @@ Route::any('stripe/webhook', [StripeWebHooksController::class, 'handle']);
 Route::get('/orders/{order}', [OrdersController::class, 'show'])
     ->name('orders.show');
 
-//require __DIR__ . '/auth.php';
-require __DIR__ . '/dashboard.php';
+// require __DIR__ . '/auth.php';
+require __DIR__.'/dashboard.php';

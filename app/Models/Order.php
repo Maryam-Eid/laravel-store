@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -25,7 +24,7 @@ class Order extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class)->withDefault([
-            'name' => 'Guest Customer'
+            'name' => 'Guest Customer',
         ]);
     }
 
@@ -69,7 +68,8 @@ class Order extends Model
         if ($number) {
             return $number + 1;
         }
-        return $year . '0001';
+
+        return $year.'0001';
     }
 
     public function items(): HasMany

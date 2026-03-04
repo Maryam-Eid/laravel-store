@@ -18,7 +18,7 @@ class ProductsController extends Controller
     {
         return view('dashboard.products.index',
             [
-                'products' => Product::with(['category', 'store'])->paginate()
+                'products' => Product::with(['category', 'store'])->paginate(),
             ]);
     }
 
@@ -52,7 +52,7 @@ class ProductsController extends Controller
     public function edit(Product $product)
     {
         return view('dashboard.products.edit', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 

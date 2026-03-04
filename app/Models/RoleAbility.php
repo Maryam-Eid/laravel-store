@@ -12,5 +12,4 @@ class RoleAbility extends Model
     public $timestamps = false;
 
     protected $guarded = [];
-
 }

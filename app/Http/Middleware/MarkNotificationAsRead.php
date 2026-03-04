@@ -18,13 +18,14 @@ class MarkNotificationAsRead
         $notificationId = $request->query('notification_id');
         if ($notificationId) {
             $user = $request->user();
-            if ($user){
+            if ($user) {
                 $notification = $user->unreadNotifications()->find($notificationId);
                 if ($notification) {
                     $notification->markAsRead();
                 }
             }
         }
+
         return $next($request);
     }
 }

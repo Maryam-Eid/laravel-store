@@ -22,17 +22,17 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->date('birthdate')
-            ->nullable();
+                ->nullable();
             $table->enum('gender', ['Male', 'Female'])
                 ->nullable();
             $table->string('street_address')
                 ->nullable();
             $table->string('city')
-            ->nullable();
+                ->nullable();
             $table->string('state')
                 ->nullable();
             $table->string('postal_code')
-            ->nullable();
+                ->nullable();
             $table->char('country', 2);
             $table->char('locale', 2)
                 ->default('en');

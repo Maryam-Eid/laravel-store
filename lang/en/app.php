@@ -6,5 +6,5 @@ return [
     'contact' => 'Contact Us',
     'signin' => 'Sign In',
     'register' => 'Register',
-    'hello' => 'Hello'
+    'hello' => 'Hello',
 ];

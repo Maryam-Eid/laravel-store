@@ -23,14 +23,14 @@ class CategoriesController extends Controller
             'categories' => Category::query()
                 ->with('parent')
                 ->when(request()->filled('name'), function ($query) {
-                    $query->where('name', 'LIKE', '%' . request('name') . '%');
+                    $query->where('name', 'LIKE', '%'.request('name').'%');
                 })
                 ->when(request()->filled('status'), function ($query) {
                     $query->whereStatus(request('status'));
                 })
                 ->withCount('products')
                 ->orderBy('name')
-                ->paginate(10)
+                ->paginate(10),
         ]);
     }
 
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
         return view('dashboard.categories.create',
             [
                 'categories' => Category::all(),
-                'parents' => Category::all()
+                'parents' => Category::all(),
             ]);
     }
 
@@ -56,7 +56,7 @@ class CategoriesController extends Controller
         Gate::authorize('categories.create');
 
         $request->merge([
-            'slug' => str::slug($request['name'])
+            'slug' => str::slug($request['name']),
         ]);
 
         $data = $request->except('image');
@@ -78,7 +78,7 @@ class CategoriesController extends Controller
 
         return view('dashboard.categories.show', [
             'category' => $category,
-            'products' => $category->products()->with('store')->latest()->paginate(5)
+            'products' => $category->products()->with('store')->latest()->paginate(5),
         ]);
     }
 
@@ -97,7 +97,7 @@ class CategoriesController extends Controller
                         $q->whereNotNull('parent_id')
                             ->orwhere('parent_id', '<>', $category->id);
                     })
-                    ->get()
+                    ->get(),
             ]);
     }
 
@@ -111,7 +111,7 @@ class CategoriesController extends Controller
         $old_image = $category->image;
 
         $request->merge([
-            'slug' => str::slug($request['name'])
+            'slug' => str::slug($request['name']),
         ]);
 
         $data = $request->except('image');
@@ -145,7 +145,9 @@ class CategoriesController extends Controller
 
     protected function uploadImage(Request $request)
     {
-        if (!$request->hasFile('image')) return;
+        if (! $request->hasFile('image')) {
+            return;
+        }
 
         return $request->file('image')->store('uploads', 'public');
 
@@ -155,7 +157,7 @@ class CategoriesController extends Controller
     {
         return view('dashboard.categories.trash',
             [
-                'categories' => Category::onlyTrashed()->paginate(10)
+                'categories' => Category::onlyTrashed()->paginate(10),
             ]);
     }
 

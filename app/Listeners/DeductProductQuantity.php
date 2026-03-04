@@ -3,10 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\OrderCreated;
-use App\Facades\Cart;
-use App\Models\Product;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class DeductProductQuantity
 {

@@ -22,6 +22,6 @@ class Profile extends Model
 
     public function fullName(): Attribute
     {
-        return Attribute::make(get: fn() => $this->first_name . ' ' . $this->last_name);
+        return Attribute::make(get: fn () => $this->first_name.' '.$this->last_name);
     }
 }

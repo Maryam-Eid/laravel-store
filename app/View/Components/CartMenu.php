@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Facades\Cart;
 use App\Repositories\Cart\CartRepository;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -10,10 +9,10 @@ use Illuminate\View\Component;
 
 class CartMenu extends Component
 {
-
     public $items;
 
     public $total;
+
     /**
      * Create a new component instance.
      */

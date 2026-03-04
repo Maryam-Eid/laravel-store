@@ -19,7 +19,7 @@ class ProductResource extends JsonResource
             'name' => $this->price,
             'price' => [
                 'normal' => $this->price,
-                'compare' => $this->compare_price
+                'compare' => $this->compare_price,
             ],
             'description' => $this->description,
             'image' => $this->image,
@@ -31,8 +31,8 @@ class ProductResource extends JsonResource
                 'store' => [
                     'id' => $this->store->id,
                     'name' => $this->store->name,
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

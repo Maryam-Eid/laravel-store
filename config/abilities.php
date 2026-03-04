@@ -1,4 +1,5 @@
 <?php
+
 return [
     'categories.view' => 'View Categories',
     'categories.create' => 'Create Categories',
