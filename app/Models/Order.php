@@ -70,4 +70,9 @@ class Order extends Model
         }
         return $year . '0001';
     }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <form action="{{ route('checkout') }}" method="post">
+                    <form action="{{ route('checkout') }}" method="post" id="payment-form">
                         @csrf
                         <div class="checkout-steps-form-style-1">
                             <ul id="accordionExample">
@@ -301,41 +301,8 @@
                                             <div class="col-12">
                                                 <div class="checkout-payment-form">
                                                     <div class="single-form form-default">
-                                                        <label>Cardholder Name</label>
-                                                        <div class="form-input form">
-                                                            <input type="text" placeholder="Cardholder Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="single-form form-default">
-                                                        <label>Card Number</label>
-                                                        <div class="form-input form">
-                                                            <input id="credit-input" type="text"
-                                                                   placeholder="0000 0000 0000 0000">
-                                                            <img src="assets/images/payment/card.png" alt="card">
-                                                        </div>
-                                                    </div>
-                                                    <div class="payment-card-info">
-                                                        <div class="single-form form-default mm-yy">
-                                                            <label>Expiration</label>
-                                                            <div class="expiration d-flex">
-                                                                <div class="form-input form">
-                                                                    <input type="text" placeholder="MM">
-                                                                </div>
-                                                                <div class="form-input form">
-                                                                    <input type="text" placeholder="YYYY">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="single-form form-default">
-                                                            <label>CVC/CVV <span><i
-                                                                        class="mdi mdi-alert-circle"></i></span></label>
-                                                            <div class="form-input form">
-                                                                <input type="text" placeholder="***">
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="single-form form-default button">
-                                                        <button type="submit" class="btn">pay now</button>
+                                                        <button type="submit" class="btn">Pay now</button>
                                                     </div>
                                                 </div>
                                             </div>

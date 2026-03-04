@@ -60,8 +60,10 @@ class CheckoutController extends Controller
 
         } catch (\Throwable $e) {
             DB::rollBack();
+            dd($e->getMessage());
             throw $e;
         }
-        return redirect()->route('home');
+
+        return redirect()->route('orders.payments.create', $order->id);
     }
 }

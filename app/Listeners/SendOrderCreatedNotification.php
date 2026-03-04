@@ -30,6 +30,6 @@ class SendOrderCreatedNotification
             ->where('store_id', $order->store_id)
             ->first();
 
-        $user->notify(new OrderCreatedNotification($order));
+        $user?->notify(new OrderCreatedNotification($order));
     }
 }
